@@ -12,8 +12,4 @@ export default async function messagesHandler(
     );
   }
 
-  if (message.body === "!debug") {
-    venom.sendText(message.from, "*DEBUG*\n\n" + JSON.stringify(message));
-  }
-
 }
