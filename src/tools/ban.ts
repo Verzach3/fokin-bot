@@ -19,7 +19,7 @@ export async function banDebugHandler(message: any, venom: Whatsapp) {
           await venom.sendText(message.chat.id, "*ADMIN*\n\n")
         }
       }
-      await venom.sendText(message.chatId, `${message.chat.groupMetadata.participants[index].id} Admin?: ${message.chat.groupMetadata.participants[index].isAdmin}`)
+      await venom.sendText(message.chatId, `from: ${message.from} id: ${message.chat.groupMetadata.participants[index].id} Admin?: ${message.chat.groupMetadata.participants[index].isAdmin}`)
     }
   }
 }
