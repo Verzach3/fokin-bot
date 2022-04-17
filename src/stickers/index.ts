@@ -1,5 +1,4 @@
 import { writeFileSync } from "fs";
-import { lowerCase } from "lodash";
 import { nanoid } from "nanoid";
 import path from "path";
 import { Message, Whatsapp } from "venom-bot";
@@ -11,7 +10,7 @@ export default async function stickersHandler(
   if (
     message.isMedia &&
     message.type === "image" &&
-    lowerCase(message.caption) === "!stick"
+    message.caption === "!stick"
   ) {
     const filepath = path.join(process.cwd(), `/resources/${nanoid()}.jpeg`);
     console.log("Download Triggered");
