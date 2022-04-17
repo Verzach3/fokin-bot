@@ -5,7 +5,7 @@ import { rm } from "fs/promises";
 import path from "path";
 
 async function bootstrap() {
-  const venom = await create({ session: "bot-main" });
+  const venom = await create({ session: "bot-main", disableSpins: true, disableWelcome: true });
 
   async function start(venom: Whatsapp) {
     venom.onMessage(async (message) => {
