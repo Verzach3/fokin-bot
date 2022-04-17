@@ -1,0 +1,22 @@
+{
+  "name": "fokin-bot",
+  "version": "1.0.0",
+  "description": "A fokin wasa bot",
+  "main": "index.js",
+  "author": "Verzach3",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "start": "tsc && node --experimental-wasm-threads ./dist/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.181",
+    "@types/node": "^17.0.24",
+    "lodash": "^4.17.21",
+    "nanoid": "^3.3.2",
+    "venom-bot": "^4.0.9"
+  }
+}
