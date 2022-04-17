@@ -15,7 +15,7 @@ export async function banDebugHandler(message: any, venom: Whatsapp) {
   if (message.body === "!banDebug" && message.chat.groupMetadata.participants !== null) {
     for (let index = 0; index < message.chat.groupMetadata.participants.length; index++) {
       if (message.chat.groupMetadata.participants[index].id === message.owner){
-        if (message.chat.groupMetadata.participants[index].isAdmin){
+        if (message.chat.groupMetadata.participants[index].isAdmin === "true"){
           await venom.sendText(message.chat.id, "*ADMIN*\n\n")
         }
       }
