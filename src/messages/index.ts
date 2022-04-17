@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import { Message, Whatsapp } from "venom-bot";
 
 export default async function messagesHandler(
@@ -11,12 +12,8 @@ export default async function messagesHandler(
     );
   }
 
-  //{ buttonText: { displayText: string; }
-  if (message.body === "!buttons") {
-    const buttons = [
-      { buttonId: "id1", buttonText: { displayText: "Button 1" } },
-      { buttonId: "id2", buttonText: { displayText: "Button 2" } },
-    ];
-    venom.sendButtons(message.from, "Elige una opción", buttons as [], "Hola");
+  if (message.body === "!debug") {
+    venom.sendText(message.from, "*DEBUG*\n\n" + JSON.stringify(message));
   }
+
 }
