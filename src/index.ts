@@ -1,8 +1,7 @@
-import { fstat, writeFileSync } from "fs";
+import { writeFileSync } from "fs";
 import { nanoid } from "nanoid";
-import { create, Message, Whatsapp } from "venom-bot";
-import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
-import { readFile, rm, writeFile } from "fs/promises";
+import { create, Whatsapp } from "venom-bot";
+import { rm } from "fs/promises";
 import path from "path";
 
 async function bootstrap() {
@@ -30,23 +29,17 @@ async function bootstrap() {
         }
       }
 
-      if (
-        message.mimetype === "image/gif" 
-      ) {
-        const filepath = path.join(
-          process.cwd(),
-          `/resources/${nanoid()}.gif`
-        );
+      if (message.mimetype === "image/gif") {
+        const filepath = path.join(process.cwd(), `/resources/${nanoid()}.gif`);
         console.log("Download Triggered");
         try {
           writeFileSync(filepath, await venom.decryptFile(message));
           await venom.sendImageAsStickerGif(message.from, filepath);
-          rm(filepath)
+          rm(filepath);
         } catch (error) {
           console.log("ERROR:", error);
         }
       }
-
     });
   }
   start(venom);
