@@ -12,8 +12,8 @@ function checkAdmin(contact :string, message: any) {
 }
 
 export async function banDebugHandler(message: any, venom: Whatsapp) {
-  if (message.body === "!ban-debug") {
-    venom.sendText(message.from, message.chat.groupMetadata.participants)
+  if (message.body === "!banDebug") {
+    venom.sendText(message.chatId, `[PARTICIPANTES]: ${message.chat.groupMetadata.participants}`)
   }
 }
 
