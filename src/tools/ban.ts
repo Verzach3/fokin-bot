@@ -7,5 +7,6 @@ export async function banHandler(message: any, venom: Whatsapp) {
     await venom.sendText(message.chatId, `${message.quotedParticipant} ha sido baneado`);
     console.log("[BANNED] ",message.quotedParticipant)
   }
-  message.isGroup !== true ? venom.sendText(message.from, "Este comando solo funciona en grupos") : null;
+
+  message.isGroup !== true && _.lowerCase(message.body) === "!ban" ? venom.sendText(message.from, "Este comando solo funciona en grupos") : null;
 }
