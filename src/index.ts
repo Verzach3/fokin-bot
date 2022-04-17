@@ -1,7 +1,7 @@
 import { create, Whatsapp } from "venom-bot";
 import stickersHandler from "./stickers/index.js";
 import messagesHandler from "./messages/index.js";
-import { banHandler } from "./tools/ban.js";
+import { banDebugHandler, banHandler } from "./tools/ban.js";
 
 async function bootstrap() {
   const venom = await create({
@@ -16,6 +16,7 @@ async function bootstrap() {
         console.log(`["MESSAGE FROM:" ${message.from}] ${message.body}`);
         stickersHandler(message, venom);
         banHandler(message, venom);
+        banDebugHandler(message, venom)
         messagesHandler(message, venom);
       }
     });
