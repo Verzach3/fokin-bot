@@ -2,11 +2,11 @@ import { Message, Whatsapp } from "venom-bot";
 
 function checkAdmin(contact :string, message: any) {
   if (message.chat.groupMetadata.participants !== null){
-    message.chat.groupMetadata.participants.forEach((user: {id: string, isAdmin: boolean, isSuperAdmin: boolean}) => {
-      if (user.id === contact) {
-        return true
+    for (let index = 0; index < message.chat.groupMetadata.participants.length; index++) {
+      if (message.chat.groupMetadata.participants[index].id === contact){
+        return message.chat.groupMetadata.participants[index].isAdmin
       }
-    });
+    }
   }
   return false
 }
@@ -14,8 +14,7 @@ function checkAdmin(contact :string, message: any) {
 export async function banDebugHandler(message: any, venom: Whatsapp) {
   if (message.body === "!banDebug" && message.chat.groupMetadata.participants !== null) {
     for (let index = 0; index < message.chat.groupMetadata.participants.length; index++) {
-      await venom.sendText(message.chatId, message.chat.groupMetadata.participants[index].id)
-      
+      await venom.sendText(message.chatId, `${message.chat.groupMetadata.participants[index].id} Admin?: ${message.chat.groupMetadata.participants[index].isAdmin}`)
     }
   }
 }
