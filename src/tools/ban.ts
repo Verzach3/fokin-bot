@@ -14,7 +14,7 @@ function checkAdmin(contact :string, message: any) {
 export async function banDebugHandler(message: any, venom: Whatsapp) {
   if (message.body === "!banDebug" && message.chat.groupMetadata.participants !== null) {
     for (let index = 0; index < message.chat.groupMetadata.participants.length; index++) {
-      if (message.chat.groupMetadata.participants[index].id === message.from){
+      if (message.chat.groupMetadata.participants[index].id === message.owner){
         if (message.chat.groupMetadata.participants[index].isAdmin){
           await venom.sendText(message.chat.id, "*ADMIN*\n\n")
         }
@@ -26,7 +26,7 @@ export async function banDebugHandler(message: any, venom: Whatsapp) {
 
 export async function banHandler(message: any, venom: Whatsapp) {
   if (message.body === "!ban" &&  message.quotedParticipant !== undefined && message.chat.isGroup) {
-    if (checkAdmin(message.from, message)) {
+    if (checkAdmin(message.owner, message)) {
       await venom.removeParticipant(message.chatId, message.quotedParticipant);
       await venom.sendText(message.chatId, `${message.quotedParticipant} ha sido baneado`);
       console.log("[BANNED] ",message.quotedParticipant)
