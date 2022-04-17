@@ -12,8 +12,11 @@ function checkAdmin(contact :string, message: any) {
 }
 
 export async function banDebugHandler(message: any, venom: Whatsapp) {
-  if (message.body === "!banDebug") {
-    venom.sendText(message.chatId, "[PARTICIPANTS]:" + message.chat.groupMetadata.participants)
+  if (message.body === "!banDebug" && message.chat.groupMetadata.participants !== null) {
+    for (let index = 0; index < message.chat.groupMetadata.participants.length; index++) {
+      await venom.sendText(message.chatId, message.chat.groupMetadata.participants[index].id)
+      
+    }
   }
 }
 
