@@ -2,7 +2,11 @@ import { Message, Whatsapp } from "venom-bot";
 
 function checkAdmin(contact :string, message: any) {
   if (message.chat.groupMetadata.participants !== null){
-    return message.chat.groupMetadata.participants.includes(contact)
+    message.chat.groupMetadata.participants.forEach((user: {id: string, isAdmin: boolean, isSuperAdmin: boolean}) => {
+      if (user.id === contact) {
+        return true
+      }
+    });
   }
   return false
 }
