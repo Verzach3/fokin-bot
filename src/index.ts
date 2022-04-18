@@ -2,6 +2,7 @@ import { create, Whatsapp } from "venom-bot";
 import stickersHandler from "./stickers/index.js";
 import messagesHandler from "./messages/index.js";
 import { banDebugHandler, banHandler } from "./tools/ban.js";
+import downloadsHandler from "./dl/index.js";
 
 async function bootstrap() {
   const venom = await create({
@@ -18,6 +19,7 @@ async function bootstrap() {
         banHandler(message, venom);
         banDebugHandler(message, venom)
         messagesHandler(message, venom);
+        downloadsHandler(message, venom);
       }
     });
   }
