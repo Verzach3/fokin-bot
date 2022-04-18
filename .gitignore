@@ -90,3 +90,7 @@ typings/
 tokens/
 dist/
 
+
+*.mp4
+
+*.mp3
