@@ -15,7 +15,6 @@ async function bootstrap() {
     venom.onMessage(async (message) => {
       if (message.body !== undefined) {
         console.log(`["MESSAGE FROM:" ${message.from}] ${message.body}`);
-        stickersHandler(message, venom);
         banHandler(message, venom);
         banDebugHandler(message, venom)
         messagesHandler(message, venom);
